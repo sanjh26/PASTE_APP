@@ -2,7 +2,7 @@ import { Copy, PlusCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { addToPastes, updatePastes } from "../redux/pasteSlice";
+import { addToPastes, updatePastes } from "../Redux/pasteSlice";
 import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
@@ -26,12 +26,14 @@ const Home = () => {
     if (pasteId) {
       // If pasteId is present, update the paste
       dispatch(updatePastes(paste));
+     
     } else {
       dispatch(addToPastes(paste));
     }
 
     setTitle("");
     setValue("");
+
 
     // Remove the pasteId from the URL after creating/updating a paste
     setSearchParams({});
@@ -51,6 +53,8 @@ const Home = () => {
         setTitle(paste.title);
         setValue(paste.content);
       }
+    
+  
     }
   }, [pasteId, pastes]);
 
